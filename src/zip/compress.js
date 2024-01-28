@@ -14,10 +14,14 @@ const compress = async () => {
   }
 
   if (fs.existsSync(destinationFilePath)) {
-    console.error(
-      "\x1b[31m%s\x1b[0m",
-      `Error: Destination file ${destinationFilePath} already exists.`
-    );
+    if (fs.existsSync(destinationFilePath)) {
+      console.error(
+        "\x1b[33m%s\x1b[0m",
+        `Warning: Destination file ${destinationFilePath} already exists.`
+      );
+      return;
+    }
+
     return;
   }
 
